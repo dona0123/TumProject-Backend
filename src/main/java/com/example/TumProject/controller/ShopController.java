@@ -48,6 +48,7 @@ public class ShopController {
 
     }
 
+    // id 검색
     @GetMapping
     public ResponseEntity<?> retrieveShopList() {
         String temporaryUserId = "tmeporary-user";
@@ -61,7 +62,7 @@ public class ShopController {
         return ResponseEntity.ok().body(response);
     }
 
-    // 제목으로 검색
+    // title 검색
     @GetMapping("/search")
     public ResponseEntity<?> searchByTitle(@RequestBody Map<String, String> requestBody) {
         String title = requestBody.get("title");
@@ -80,8 +81,6 @@ public class ShopController {
 
         return ResponseEntity.ok().body(response);
     }
-
-
 
     @PutMapping
     public ResponseEntity<?> updateShop(@RequestBody ShopDTO dto) {

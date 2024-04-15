@@ -22,7 +22,7 @@ public class ShopService {
 
         repository.save(entity);
 
-        log.info("Entity id: {} is saved.", entity.getUserId()); // 수정된 부분: entity.getUserId()로 변경
+        log.info("Entity id: {} is saved.", entity.getUserId());
 
         // 해당 유저가 작성한 모든 Shop 아이템 반환
         return repository.findByUserId(entity.getUserId());
@@ -51,7 +51,6 @@ public class ShopService {
         original.ifPresent(shop -> {
             // 엔티티 정보 업데이트
             shop.setTitle(entity.getTitle());
-            // shop.setDone(entity.isDone()); // 수정된 부분: 해당 코드는 ShopEntity에 없으므로 주석 처리
 
             repository.save(shop);
         });
@@ -68,8 +67,8 @@ public class ShopService {
             // 엔티티 삭제
             repository.delete(entity);
         } catch (Exception e) {
-            log.error("error deleting entity ", entity.getUserId(), e); // 수정된 부분: entity.getId()를 entity.getUserId()로 변경
-            throw new RuntimeException("error deleting entity " + entity.getUserId()); // 수정된 부분: entity.getId()를 entity.getUserId()로 변경
+            log.error("error deleting entity ", entity.getUserId(), e);
+            throw new RuntimeException("error deleting entity " + entity.getUserId());
         }
         // 해당 유저가 작성한 모든 Shop 아이템 반환
         return retrieve(entity.getUserId());
