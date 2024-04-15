@@ -61,7 +61,8 @@ public class ShopController {
         return ResponseEntity.ok().body(response);
     }
 
-    @PostMapping("/search")
+    // 제목으로 검색
+    @GetMapping("/search")
     public ResponseEntity<?> searchByTitle(@RequestBody Map<String, String> requestBody) {
         String title = requestBody.get("title");
 
