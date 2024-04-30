@@ -20,16 +20,19 @@ public class ShopController {
     @Autowired
     private ShopService service;
 
+    ShopEntity entity;
+
     @PostMapping // shop 아이템을 요청할 떄는 post 로
     public ResponseEntity<?> createShop(@RequestBody ShopDTO dto) {
         try {
-            String temporaryUserId = "tmeporary-user";
 
-            ShopEntity entity = ShopDTO.toEntity(dto);
+            entity = ShopDTO.toEntity(dto);
+
+            String userId = entity.getUserId();
 
             entity.setId(null);
 
-            entity.setUserId(temporaryUserId);
+            entity.setUserId(userId);
 
             List<ShopEntity> entities = service.create(entity);
 
@@ -51,9 +54,9 @@ public class ShopController {
     // id 검색
     @GetMapping
     public ResponseEntity<?> retrieveShopList() {
-        String temporaryUserId = "tmeporary-user";
+        String userId = entity.getUserId();
 
-        List<ShopEntity> entities = service.retrieve(temporaryUserId);
+        List<ShopEntity> entities = service.retrieve(userId);
 
         List<ShopDTO> dtos = entities.stream().map(ShopDTO::new).collect(Collectors.toList());
 
@@ -71,7 +74,7 @@ public class ShopController {
             return ResponseEntity.badRequest().body("Title cannot be empty");
         }
 
-        String temporaryUserId = "temporary-user";
+        String userId = entity.getUserId();
 
         List<ShopEntity> entities = service.findByTitle(title);
 
@@ -84,11 +87,11 @@ public class ShopController {
 
     @PutMapping
     public ResponseEntity<?> updateShop(@RequestBody ShopDTO dto) {
-        String temporaryUserId = "tmeporary-user";
+        String userId = entity.getUserId();
 
         ShopEntity entity = ShopDTO.toEntity(dto);
 
-        entity.setUserId(temporaryUserId);
+        entity.setUserId(userId);
 
         List<ShopEntity> entities = service.update(entity);
 
@@ -102,11 +105,11 @@ public class ShopController {
     @DeleteMapping
     public ResponseEntity<?> deleteShop(@RequestBody ShopDTO dto) {
         try {
-            String temporaryUserId = "tmeporary-user";
+            String userId = entity.getUserId();
 
             ShopEntity entity = ShopDTO.toEntity(dto);
 
-            entity.setUserId(temporaryUserId);
+            entity.setUserId(userId);
 
             List<ShopEntity> entities = service.delete(entity);
 
