@@ -66,7 +66,7 @@ public class ShopController {
     }
 
     // title 검색
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<?> searchByTitle(@RequestBody Map<String, String> requestBody) {
         String title = requestBody.get("title");
 
