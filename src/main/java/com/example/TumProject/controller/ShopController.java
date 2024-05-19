@@ -51,7 +51,16 @@ public class ShopController {
 
     }
 
-    // id 검색
+    // 모든 제품 반환
+//    @Autowired
+//    private ShopService shopService;
+//
+//    @GetMapping
+//    public List<ShopEntity> getAllShops() {
+//        return shopService.retrieveAll();
+//    }
+
+    // userId 검색 반환
     @GetMapping
     public ResponseEntity<?> retrieveShopList() {
         String userId = entity.getUserId();
@@ -65,8 +74,8 @@ public class ShopController {
         return ResponseEntity.ok().body(response);
     }
 
-    // title 검색
-    @PostMapping("/search")
+    // title 검색 반환
+    @PostMapping("/title")
     public ResponseEntity<?> searchByTitle(@RequestBody Map<String, String> requestBody) {
         String title = requestBody.get("title");
 

@@ -29,6 +29,18 @@ public class ShopService {
 
     }
 
+    // 모든 shop 아이템 반환
+//    private final ShopRepository shopRepository;
+//
+//    @Autowired
+//    public ShopService(ShopRepository shopRepository) {
+//        this.shopRepository = shopRepository;
+//    }
+//
+//    public List<ShopEntity> retrieveAll() {
+//        return shopRepository.findAll();
+//    }
+
     // 매개변수로 받은 id의 유저가 작성한 Shop 반환
     public List<ShopEntity> retrieve(final String userId) {
         return repository.findByUserId(userId);
@@ -39,7 +51,6 @@ public class ShopService {
     public List<ShopEntity> findByTitle(final String title) {
         return repository.findByTitle(title);
     }
-
 
 
     // entity 를 받아오고, 그 정보로 갱신하기 (업데이트)
