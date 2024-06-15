@@ -96,7 +96,7 @@ public class ShopController {
 
     @PutMapping
     public ResponseEntity<?> updateShop(@RequestBody ShopDTO dto) {
-        String userId = entity.getUserId();
+            String userId = entity.getUserId();
 
         ShopEntity entity = ShopDTO.toEntity(dto);
 
